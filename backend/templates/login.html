@@ -1,0 +1,54 @@
+{% extends 'master.html' %}
+{% load static %}
+<head>
+{% if title %} 
+<title>Django {{ title }} </title>
+{% else %}
+<title>{{ title }}</title>
+{% endif %}
+<link rel="stylesheet" type="text/css" href="{% static '../static/css/login.css' %}">
+</head>
+{% block content %}
+
+<br>
+<div class="gabby">
+    <h1>PLEASE LOGIN </h1>
+    <center>
+        <main>
+            <h1>Powered by <span class="RR"> 3R </span> </h1>
+            <br>
+            <div class="d1">
+                <div class="d2">
+                    <div class="d3">
+                        <form method="POST" class='tufat'>
+                            {% csrf_token %}
+                            {{ login_form.as_p }}
+                            <button type="submit"><span class='ab'>Login</span></button>
+                        </form>
+                        <p class="ba">If you do not have an account,
+                            <a href="{% url 'backend:registration' %}"><span class='bc'>register</span></a> here.
+                        </p>
+                        <style>
+                            .ab:hover{color:yellowgreen}
+                            .ba{
+                                color:white;
+                                margin-left:50px;
+                                text-shadow:1px 1px 1px red;
+                                }
+                            .bc{
+                                color:white;
+                            }
+                            .bc:hover{
+                                color:red
+                                
+                            }    
+
+                        </style>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </center>
+</div>
+       
+{% endblock content %}  

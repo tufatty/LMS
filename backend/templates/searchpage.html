@@ -1,0 +1,17 @@
+{% extends "master.html" %}
+
+{% block title %} Search {% endblock %}
+
+{% block content %}
+    <center>
+        {% if searched %}
+            <h1>YOU SEARCHD FOR {{searched}} </h1> 
+        {% else %}
+            <h1> HEY!!!!! you didn't search anything</h1>
+        {% endif %}
+
+        
+    </center>
+{% endblock %}       
+
+ 

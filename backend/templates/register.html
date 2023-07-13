@@ -1,0 +1,39 @@
+{% extends 'master.html' %}
+{% load static %}
+<head>   
+    {% if title %} 
+    <title>Django {{ title }} </title>
+    {% else %}
+    <title>{{ title }}</title>
+    {% endif %}
+    <link rel="stylesheet" type="text/css" href="{% static '../static/css/register.csss' %}">
+</head>
+{% block content %}
+
+  <body>
+    <main>
+        <div class="shadow p-4 mb-5 bg-body rounded">
+            <h1 class="gabby" style="color:green">REGISTER HERE</h1>
+            <br>
+            {% if messages %}
+                <ul>
+                    {% for messages in messages %}
+                    <li>{% if messages.tags %} {{messages}} {% endif %}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}    
+           
+                <form method="POST">
+                    {% csrf_token %}
+                    {{register_form.as_p}}
+                    <button type="submit" class="btn btn-success">Register</button>
+                </form>
+           
+            
+            <p>If you already have an account, <a href="{% url 'backend:login'%} "> login </a> instead</p>
+        </div>
+    </main>
+  </body> 
+
+{% endblock %}
+    

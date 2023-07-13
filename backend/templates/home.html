@@ -1,0 +1,20 @@
+{% extends 'master.html' %}
+
+{% if title %} 
+<title>Django {{ title }} </title>
+{% else %}
+<title>{{ title }}</title>
+{% endif %}
+{% block content %}
+{% include 'carousel.html' %} 
+<br>
+   <div class='div1'>
+        <div class="ddiv">
+            <h1> WELCOME TO SKILLUP LMS</h1>
+            <h3>New USer? Register here</h3>
+            <button type="submit"><a href="{% url 'backend:registration' %}">Sign up</a></button>
+        </div>
+    </div>
+{% endblock %}
+   
+   

@@ -1,0 +1,12 @@
+{% extends "master.html" %}
+
+{% block title %} home {% endblock %}
+
+{% block content %}
+<h1 style='clolor: red'> WELCOME TO SKILLUP LMS</h1>
+        <h3>New USer? Register here</h3>
+        <button type="submit"><a href="{% url 'backend:registration' %}">Sign up</a></button>
+            
+{% endblock %}       
+
+ 

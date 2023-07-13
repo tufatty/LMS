@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if title %} 
+    <title>Django {{ title }} </title>
+    {% else %}
+    <title>{{ title }}</title>
+    {% endif %}
+</head>
+<body>
+    {% if user.is_authenticated %}
+    <h1> WELCOME TO THE DASHBOARD!!!! <span style='color:yellow'> {{user.username}} </span> </h1>
+        <a href="{% url 'backend:logout' %}">logout</a>
+        <button type="submit"><a href="{% url 'backend:logout' %}">logout</a></button>
+        {% if messages %}
+                <ul>
+                    {% for messages in messages %}
+                    <li>{% if messages.tags %} {{messages}} {% endif %}</li>
+                    {% endfor %}
+                </ul>
+        {% endif %}
+        <form method="POST">
+            {% csrf_token %}
+            {{user_form.as_p}}
+            {{profile_form.as_p}}
+            <button type="submit">Update</button>
+        </form>    
+    {% endif %}
+</body>
+</html>
