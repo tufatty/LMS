@@ -1,0 +1,119 @@
+/*FOR THE BODY*/
+body{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: scroll;
+}
+/*FOR THE NAV*/
+.navbar{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height:90px ;
+}
+.container-fluid{
+    height:70px; 
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+    /**background-color: red;**/
+    
+}
+
+/* FOR CAROUSEL AND DIV  AND GABBY OVERLAPPING */
+.carousel{
+    position: relative;
+    z-index: 1;
+}
+.div1{
+    position:absolute;
+    z-index:2;
+    top: 0;
+    left: 0;
+    width: 90%;
+    height: 400px;
+    filter: opacity(100%);
+    border-color: aliceblue;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-top: 150px;
+    margin-left: 70px;
+}
+
+
+/****** FOR THE FORM AND SEARCHBAR *******/
+
+nav form{
+    background-color:inherit;
+    display: block;
+    margin-left: 50px;
+    margin-top: 30px;    
+}
+
+nav ul{
+    display:block;
+    float: right;
+}
+nav ul li{
+    list-style-type: none;
+    display: inline-block;
+    
+
+}
+nav ul li button{
+    background-color: white;
+    border-radius: 5px;
+}
+nav ul li button:hover{
+    background-color:black;
+}
+nav ul li button a{
+    text-decoration: none;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size:small;
+    color: black; 
+}
+nav ul li button a:hover{
+    color:yellowgreen ;
+    
+}
+/************* FOR DIV1 *************/
+
+/*FOR THE DDIV*/
+.ddiv{
+    margin-left: 50px;
+    padding-top: 3px;
+    filter: brightness(100%), contrast(70%);
+}
+.ddiv h1{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight:700;
+    color: aliceblue;
+    font-size:200px;
+    text-shadow: 3px 1px 1px red;
+}
+.ddiv h3{
+    color: black;
+    text-shadow: 1px 1px 1px red;
+    filter: brightness(70%);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+.div1 button a{
+    text-decoration: none;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: black;
+}
+.ddiv button a:hover{
+    color: yellowgreen;
+    size: 20px;
+}
+.ddiv button{
+    border-radius: 5px;
+}
+.ddiv button:hover{
+    background-color: black;
+}
+

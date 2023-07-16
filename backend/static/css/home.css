@@ -95,8 +95,8 @@ nav ul li button a:hover{
     text-shadow: 3px 1px 1px red;
 }
 .ddiv h3{
-    color: black;
-    text-shadow: 1px 1px 1px red;
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px 1px white;
     filter: brightness(70%);
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 

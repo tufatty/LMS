@@ -22,6 +22,7 @@ def about(request):
 def contact(request):
     return render(request, 'contact.html', {'title':'Contact Us'}),
 
+@login_required(login_url='login/')
 def courses(request):
     return render(request, 'courses.html', {'title':'Courses'}),
 
@@ -34,9 +35,10 @@ def register_request(request):
         if form.is_valid():
             user = form.save()
             #login(request, User)
-            messages.success(request, "Registration successful.")
+            messages.success(request, ("Registration successful."))
             return redirect("backend:login")
-        messages.error(request, "Unsuccessful Registration. Invalid Information")
+        else:
+            messages.error(request, ("Unsuccessful Registration. Invalid Information"))
     form = NewUserForm()
     template = loader.get_template("register.html")
     context = {
@@ -55,13 +57,15 @@ def login_request(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                #messages.info(request, f"You are now logged in as {username}.")
+                messages.success(request, f"You are now logged in as {username}.")
                 #what you have here is app name : patter/link name
                 return redirect('backend:dashboard')
             else:
-                messages.error(request, "Invalid username or "  + "password.")
+                messages.error(request, ("Invalid username or "  + "password."))
+                return redirect('backend:login')
         else:
-            messages.error(request, "Invalid username or password")
+            messages.error(request, ("Invalid username or password"))
+            return redirect('backend:login')
     form = AuthenticationForm()
     template = loader.get_template("login.html")
     context = {
@@ -70,7 +74,7 @@ def login_request(request):
     return HttpResponse(template.render(context, request))
     
 @login_required(login_url='login/')
-def dashboard(request):
+def update(request):
     #user_id = request.User.id 
     #mydashboard = User.objects.filter(id=user_id)
     if request.method == 'POST':
@@ -81,23 +85,30 @@ def dashboard(request):
         if user_form.is_valid() and profile_form.is_valid():      
             user_form.save()
             profile_form.save()
-            messages.success(request, 'update successful')
+            messages.success(request, ('update successful'))
             return redirect('backend:dashboard')
     else:
         user_form = UserUpdateForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.userprofile)
 
-    template = loader.get_template('dashboard.html')
+    template = loader.get_template('update.html')
     context = {
 
         'user' : request.user,
         'user_form': user_form,
         'profile_form': profile_form,
+
     }
     return HttpResponse(template.render(context, request))
+
+
 
 @login_required(login_url='login/')
 def logout_request(request):
     logout(request)
-    messages.info(request, "You have successfully logged out.")
+    messages.info(request, ("You have successfully logged out."))
     return redirect('backend:home')
+
+@login_required(login_url='login/')
+def dashboard(request):
+    return render(request, 'dashboard.html', {'title':'Dashboard'})

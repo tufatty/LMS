@@ -3,8 +3,6 @@ from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import UserProfile
-
-
 #create your forms
 
 class NewUserForm(UserCreationForm):
@@ -48,4 +46,4 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile    
-        fields = ('phone', 'dob', 'address',)
+        fields = ('phone', 'dob', 'address', )
