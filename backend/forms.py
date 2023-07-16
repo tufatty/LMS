@@ -44,6 +44,112 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class ProfileForm(forms.ModelForm):
+    
+   
     class Meta:
         model = UserProfile    
-        fields = ('phone', 'dob', 'address', )
+        fields = ('phone', 'dob', 'address', 'city','state','gender')
+        
+
+
+
+
+
+    '''
+    Abia='AB'
+    Adamawa='AD'
+    Akwa_Ibom='AI'
+    Anambra='AN'
+    Bauchi='BU'
+    Bayelsa='BY'
+    Benue='BE'
+    Borno='BO'
+    Cross_River='CR'
+    Delta='DL'
+    Ebonyi='EB'
+    Edo='ED'
+    Ekiti='EK'
+    Enugu='EN'
+    Gombe='GO'
+    Imo='IM'
+    Jigawa='JI'
+    Kaduna='KD'
+    Kano='KN'
+    Katsina='KT'
+    Kebbi='KB'
+    Kogi='KG'
+    Kwara='KW'
+    Lagos='LG'
+    Nasarawa='NS'
+    Niger='NG'
+    Ogun='OG'
+    Ondo='ON'
+    Osun='OS'
+    Oyo='OY'
+    Plateau='PL'
+    Rivers='RS'
+    Sokoto='SK'
+    Taraba='TR'
+    Yobe='YB'
+    Zamfara='ZM'
+
+
+    state=[
+        (Abia,'AB'),
+        (Adamawa,'AD'),
+        (Akwa_Ibom,'AI'),
+        (Anambra,'AN'),
+        (Bauchi,'BU'),
+        (Bayelsa,'BY'),
+        (Benue,'BE'),
+        (Borno,'BO'),
+        (Cross_River,'CR'),
+        (Delta,'DL'),
+        (Ebonyi,'EB'),
+        (Edo,'ED'),
+        (Ekiti,'EK'),
+        (Enugu,'EN'),
+        (Gombe,'GO'),
+        (Imo,'IM'),
+        (Jigawa,'JI'),
+        (Kaduna,'KD'),
+        (Kano,'KN'),
+        (Katsina,'KT'),
+        (Kebbi,'KB'),
+        (Kogi,'KG'),
+        (Kwara,'KW'),
+        (Lagos,'LG'),
+        (Nasarawa,'NS'),
+        (Niger,'NG'),
+        (Ogun,'OG'),
+        (Ondo,'ON'),
+        (Osun,'OS'),
+        (Oyo,'OY'),
+        (Plateau,'PL'),
+        (Rivers,'RS'),
+        (Sokoto,'SK'),
+        (Taraba,'TR'),
+        (Yobe,'YB'),
+        (Zamfara,'ZM'),
+
+    ]
+
+    Male = "M"
+    Female = "F"
+
+    gender = [
+
+        (Male,"M"),
+        (Female,"F"),
+    ]
+
+
+    phone=forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control', 'placeholder':'ENTER YOUR PHONE NUMBER','size':'4px'}))
+    dob=forms.DateField(widget=forms.DateInput(attrs={'class':'form-control', 'placeholder':'ENTER YOUR DATE OF BIRTH'}))
+    address=forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'ENTER YOUR ADDRESS'}))
+    city=forms.CharField(max_length=15, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'ENTER YOUR CITY'}))
+    state=forms.Select(attrs={'class':'special'},choices=state)
+    gender=forms.Select(attrs={'class':'special'},choices=gender)
+   
+    '''
+
