@@ -31,27 +31,41 @@
         <main>
             <h1 style="text-shadow:green;">Sponsored by <span class="RR" style="font-size:200px; color:green"> 3R </span> </h1>
             <br>
-            <div class="d1">
-                <div class="d2">
-                    <div class="d3">
-                        <div class="shadow p-4 mb-5 bg-body rounded">
+                        <div class="shadow w-50 p-4 mb-5 bg-body rounded">
                         <form method="POST" class='tufat'>
                             {% csrf_token %}
-                                 <div class="mb-3">
-                                  
-                                {% render_field login_form.username placeholder="ENTER YOUR USERNAME" name="username" %}
-                                 <div id="emailHelp" class="form-text">We'll never share your details with anyone else.</div>
-                                </div>
-                                <div class="mb-3">
-                        
-                                {% render_field login_form.password placeholder="ENTER YOUR PASSWORD" type="password" name="password" %}
+                            <div class="mb-3">
+                                <div class="row g-3 align-items-center">
+                                    <div class="col-auto">
+                                        {% render_field login_form.username class='form-control' placeholder="ENTER YOUR USERNAME" name="username" %}
+                                    </div>
+                                        <div class="col-auto">
+                                          <span class="form-text">
+                                            We'll never share your details with anyone else.
+                                          </span>
+                                        </div>
+                                      </div>
+                                 </div>
+                    
+                              
+                                <br>
+                                    <div class="row g-3 align-items-center">
+                                        <div class="col-auto">
+                                            {% render_field login_form.password class="form-control" placeholder="ENTER YOUR PASSWORD" type="password" name="password" %}
+                                        </div>
+                                        <div class="col-auto">
+                                          <span id="passwordHelpInline" class="form-text">
+                                            Must be 8-20 characters long.
+                                          </span>
+                                        </div>
+                                      </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Sign In</button>
                                 
                                 <p class="ba">If you do not have an account,
                                     <a href="{% url 'backend:registration' %}"><span class='bc'>register</span></a> here.
                                 </p>
-                        
+                                
                         </form>
                         
                     </div>
@@ -71,9 +85,6 @@
                             }    
 
                         </style>
-                    </div>
-                </div>
-            </div>
         </main>
     </center>
 </div>

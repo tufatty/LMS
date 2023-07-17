@@ -1,36 +1,50 @@
 {% extends 'master.html' %}
 {% load static %}
+{% load widget_tweaks %}
 <head>   
     {% if title %} 
     <title>Django {{ title }} </title>
     {% else %}
     <title>{{ title }}</title>
     {% endif %}
-    <link rel="stylesheet" type="text/css" href="{% static '../static/css/register.csss' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '../static/css/register.css' %}">
 </head>
 {% block content %}
 
   <body>
     <main>
-        <div class="shadow p-4 mb-5 bg-body rounded">
+        <div class="shadow w-50 p-4 mb-5 bg-body rounded">
             <h1 class="gabby" style="color:green">REGISTER HERE</h1>
             <br>
             {% if messages %}
-                <ul>
-                    {% for messages in messages %}
-                    <li>{% if messages.tags %} {{messages}} {% endif %}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}    
+            {% for messages in messages %}
+            
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{messages}} 
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            
+            {% if messages.tags %} 
+                    
+            {% endif %} 
+            {% endfor %}
+            {% endif %} 
            
                 <form method="POST">
                     {% csrf_token %}
-                    {{register_form.as_p}}
+                    {% render_field register_form.username class="form-control border-success" type="text" placeholder="ENTER YOUR USERNAME" name="username"  %}
+                    <br>
+                    {% render_field register_form.email class="form-control border-success" type="email" placeholder="ENTER YOUR E-MAIL" name="email"  %}
+                    <br>
+                    {% render_field register_form.password1 class="form-control border-success" type="password" placeholder="ENTER YOUR PASSWORD" name="password1"  %}
+                    <br>
+                    {% render_field register_form.password2 class="form-control border-success" type="password" placeholder="CONFIRM YOUR PASSWORD" name="password2"  %}
+                    <br>
                     <button type="submit" class="btn btn-success">Register</button>
                 </form>
-           
+                <p>If you already have an account, <a href="{% url 'backend:login'%} "> login </a> instead</p>
+                
             
-            <p>If you already have an account, <a href="{% url 'backend:login'%} "> login </a> instead</p>
         </div>
     </main>
   </body> 

@@ -1,12 +1,4 @@
-body h1{
-    color:green;
+body {
+   background-image:url(../images/guy22.jpg)
 
-}
-.form-control{
-    width: 50%;
-    background-color: red;
-    
-}
-.gabby{
-    color:green;
 }
