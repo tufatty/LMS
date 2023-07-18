@@ -15,4 +15,4 @@ urlpatterns = [
     path('courses/', views.courses, name='courses'),
     path('update/', views.update, name='update'),
 
-]
+] 

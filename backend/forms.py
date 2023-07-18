@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from .models import UserProfile
 #create your forms
 
+
+
 class NewUserForm(UserCreationForm):
     username = forms.CharField(max_length=15, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'ENTER YOUR USERNAME',}))
     email = forms.EmailField(max_length=20, widget=forms.EmailInput(attrs={'class':'form-control','placeholder':'ENTER YOUR E-MAIL',}))
@@ -48,7 +50,7 @@ class ProfileForm(forms.ModelForm):
    
     class Meta:
         model = UserProfile    
-        fields = ('phone', 'dob', 'address', 'city','state','gender')
+        fields = ('phone', 'dob', 'address', 'city','state','gender','image')
         
 
 

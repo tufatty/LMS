@@ -107,6 +107,7 @@ class UserProfile(models.Model):
     
     gender = models.CharField(max_length=1, 
                               choices=gender, default=Male)
+    image = models.ImageField(default='default.jpg', upload_to='profile_pics')    
 
 
     def __str__(self):

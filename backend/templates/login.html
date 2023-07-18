@@ -29,9 +29,9 @@
 {% endif %}
     <center>
         <main>
-            <h1 style="text-shadow:green;">Sponsored by <span class="RR" style="font-size:200px; color:green"> 3R </span> </h1>
+            <h1 style="text-shadow:green;">Sponsored by <span class="w-50"><img src={% static '../static/images/logo.png' %}> </span> </h1>
             <br>
-                        <div class="shadow w-50 p-4 mb-5 bg-body rounded">
+                        <div class="shadow w-25 p-4 mb-5 bg-body rounded opacity-75">
                         <form method="POST" class='tufat'>
                             {% csrf_token %}
                             <div class="mb-3">
@@ -59,12 +59,15 @@
                                           </span>
                                         </div>
                                       </div>
+                                      <br>
+
+                                      <button type="submit" class="btn btn-primary">Sign In</button>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Sign In</button>
                                 
                                 <p class="ba">If you do not have an account,
                                     <a href="{% url 'backend:registration' %}"><span class='bc'>register</span></a> here.
                                 </p>
+                              
                                 
                         </form>
                         
