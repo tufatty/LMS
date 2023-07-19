@@ -33,8 +33,8 @@
         <h1> WELCOME TO THE DASHBOARD!!!! <span style='color:red'> {{user.username}} </span> </h1> 
     </div>
 
-    <div>
-        <img src="{{ user.userprofile.image.url }}"/>
+    <div class="float-end">
+    <img class="rounded-circle" src="{{ user.userprofile.image.url }}"/>
     </div>
         <button type="submit" class="btn btn-success"><a href="{% url 'backend:logout' %}">logout</a></button>
        

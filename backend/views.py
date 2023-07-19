@@ -8,16 +8,18 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 import time
-from datetime import datetime
+import datetime
 
-now = datetime.now()
-current_year = now.year
+today_date = datetime.date.today()
+current_year = today_date.strftime('%Y')
 
 
 # Create your views here.
 
 def home(request):
-    return render(request, 'home.html', {'title':'Home','current_year':current_year})
+    return render(request, 'home.html', {'title':'Home',
+                                         'current_year':current_year
+                                         })
 
 def index(request):
     return render(request, 'index.html', {'title':'Home'})
