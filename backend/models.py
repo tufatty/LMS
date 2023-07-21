@@ -121,3 +121,18 @@ class UserProfile(models.Model):
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
         instance.userprofile.save()
+
+
+class ContactUs (models.Model):
+    full_name = models.CharField("Full Name", max_length=20)
+    phone_num = models.BigIntegerField()
+    email = models.EmailField()
+    message = models.TextField(max_length=250)
+
+
+
+    def __str__(self):
+        return self.full_name
+
+
+

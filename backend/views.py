@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
-from .forms import NewUserForm, UserUpdateForm, ProfileForm #NewRegistration
+from .forms import NewUserForm, UserUpdateForm, ProfileForm, ContactForm #NewRegistration
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout #login and logout
 from django.contrib.auth.models import User
@@ -17,22 +17,28 @@ current_year = today_date.strftime('%Y')
 # Create your views here.
 
 def home(request):
-    return render(request, 'home.html', {'title':'Home',
-                                         'current_year':current_year
-                                         })
+    return render(request, 'home.html', {'title':'Home','current_year':current_year})
 
 def index(request):
-    return render(request, 'index.html', {'title':'Home'})
+    return render(request, 'index.html', {'title':'Home','current_year':current_year})
 
 def about(request):
-    return render(request, 'about.html', {'title':'About'})
+    return render(request, 'about.html', {'title':'About','current_year':current_year})
 
 def contact(request):
-    return render(request, 'contact.html', {'title':'Contact Us'}),
-
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            full_name = request.POST(full_name=full_name)
+            phone_num = request.POST
+            messages.success(request, 'THANKS, WE WILL GET BACK TO YOU {full_name}')
+            return render(request, 'contact.html', {'title':'Contact Us','current_year':current_year,'Contact_form':form})
+    else:
+        return render(request, 'contact.html', {'title':'Contact Us','current_year':current_year})
+    
 @login_required(login_url='login/')
 def courses(request):
-    return render(request, 'courses.html', {'title':'Courses'}),
+    return render(request, 'courses.html', {'title':'Courses','current_year':current_year})
 
 #FOR SEARCH BAR
 
@@ -51,6 +57,7 @@ def register_request(request):
     template = loader.get_template("register.html")
     context = {
         'register_form': form,
+        'current_year':current_year,
     }
     return HttpResponse(template.render(context, request))
 
@@ -78,6 +85,7 @@ def login_request(request):
     template = loader.get_template("login.html")
     context = {
         "login_form": form,
+        'current_year':current_year,
     }
     return HttpResponse(template.render(context, request))
     
@@ -105,6 +113,7 @@ def update(request):
         'user' : request.user,
         'user_form': user_form,
         'profile_form': profile_form,
+        'current_year':current_year,
 
     }
     return HttpResponse(template.render(context, request))
@@ -119,4 +128,4 @@ def logout_request(request):
 
 @login_required(login_url='login/')
 def dashboard(request):
-    return render(request, 'dashboard.html', {'title':'Dashboard'})
+    return render(request, 'dashboard.html', {'title':'Dashboard','current_year':current_year})

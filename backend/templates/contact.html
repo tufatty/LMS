@@ -1,3 +1,5 @@
+{% extends 'master.html' %}
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,19 +11,52 @@
     <title>{{ title }}</title>
     {% endif %}
 </head>
-<body>
-    <nav>
-        <button type="submit"><a href="{% url 'backend:home' %}">Home</a></button>
-        <button type="submit"><a href="{% url 'backend:login' %}">Login</a></button>
-    </nav>   
+{% block content %}
+    <h1 style="color:green" > CONTACT US  </h1>
+    <br>
+    <br>
+            <div class="shadow w-25 p-4 mb-5 bg-body rounded opacity-75">
+                <p>Skill Up LMS is a platform where you can learn alot about the skillup classes and also about the lecturers and the students.
+                    It is a platform where you can also indulge in lessons and learn alot at your own time 
+                </p>
+                <br>
+                <br>
+                <br>
+                <p type="address">
+                    ADDRESS : IMO STATE MINISTRY OF DIGITAL ECONOMY, EGBU ROAD OWERRI
+                </p>
+                <br>
+                <br>
+                <p type="phone">
+                    PHONE : +234 8000 000 001
+                </p>
+                <br>
+                <br>
+                <p type="email">
+                    E-MAIL : Skillupimo@gov.ng
+                </p>
+            </div>
+            <div class="shadow w-25 p-4 mb-5 bg-body rounded opacity-75 float-end">
+                <form method="POST">
+                    {% csrf_token %}
+                    {% render_field ContactUs_form.full_name class="form-control border-success" type="text" placeholder="ENTER YOUR FULL NAME" name="full_name"  %}
+                    <br>
+                    {% render_field ContactUs_form.phone_num class="form-control border-success" type="tel" placeholder="ENTER YOUR PHONE NUMBER" name="phone_num"  %}
+                    <br>
+                    {% render_field ContactUs_form.email class="form-control border-success" type="email" placeholder="ENTER YOUR EMAIL" name="email"  %}
+                    <br>
+                    {% render_field ContactUs_form.message class="form-control border-success" type="text" placeholder="YOUR MESSAGE. . . " name="message"  %}
+                    <br>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+            </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+<br>
+ {% endblock content %}
 
-    <div class='logo'>
-        <h1> WELCOME TO SKILLUP LMS.</h1>
-        <h3> THIS IS THE ABOUT PAGE</h3>
-        <p style="background:red;">Skill Up LMS id a platform where you can learn alot about the skillup classes and also about the lecturers and the students.
-           It is a platform where you can also indulge in lessons and learn alot at your own time 
-        </p>
-        <button type="submit"><a href="{% url 'backend:registration' %}">Sign up</a></button>
-    </div>
-</body>
+
 </html>
