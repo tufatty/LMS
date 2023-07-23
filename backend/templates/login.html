@@ -51,7 +51,10 @@
                                 <br>
                                     <div class="row g-3 align-items-center">
                                         <div class="col-auto">
-                                            {% render_field login_form.password class="form-control" placeholder="ENTER YOUR PASSWORD" type="password" name="password" %}
+                                            {% render_field login_form.password  id='password' class="form-control" placeholder="ENTER YOUR PASSWORD" type="password" name="password" %}
+                                            <div class='form-text' id='showpass'>
+                                               SHOW PASSWORD
+                                            </div>
                                         </div>
                                         <div class="col-auto">
                                           <span id="passwordHelpInline" class="form-text">
@@ -86,10 +89,31 @@
                                 color:red
                                 
                             }    
+                            #showpass:hover{
+                                cursor:pointer;
+                                color:red;
+
+                            }
 
                         </style>
         </main>
     </center>
+    <script>
+        let password = document.getElementById('password');
+        let showpass = document.getElementById('showpass');
+       
+        
+        showpass.onclick = function(){
+            if(password.type == "password"){
+                password.type = "text";
+            
+            }else{
+                password.type = "password";
+                
+            }
+              }
+
+    </script>
 </div>
        
 {% endblock content %}  

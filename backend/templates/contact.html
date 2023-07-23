@@ -14,8 +14,21 @@
 {% block content %}
     <h1 style="color:green" > CONTACT US  </h1>
     <br>
+    {% if messages %}
+    {% for messages in messages %}
+    
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{messages}} 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    
+    {% if messages.tags %} 
+            
+    {% endif %} 
+    {% endfor %}
+    {% endif %}
     <br>
-            <div class="shadow w-25 p-4 mb-5 bg-body rounded opacity-75">
+            <div class="shadow w-100 p-4 mb-5 bg-body rounded opacity-75">
                 <p>Skill Up LMS is a platform where you can learn alot about the skillup classes and also about the lecturers and the students.
                     It is a platform where you can also indulge in lessons and learn alot at your own time 
                 </p>
@@ -36,18 +49,23 @@
                     E-MAIL : Skillupimo@gov.ng
                 </p>
             </div>
-            <div class="shadow w-25 p-4 mb-5 bg-body rounded opacity-75 float-end">
+            <div class="shadow w-50 p-4 mb-5 bg-body rounded opacity-75">
+                <h1 style='color:green'>CONTACT FORM</h1>
                 <form method="POST">
                     {% csrf_token %}
-                    {% render_field ContactUs_form.full_name class="form-control border-success" type="text" placeholder="ENTER YOUR FULL NAME" name="full_name"  %}
-                    <br>
-                    {% render_field ContactUs_form.phone_num class="form-control border-success" type="tel" placeholder="ENTER YOUR PHONE NUMBER" name="phone_num"  %}
-                    <br>
-                    {% render_field ContactUs_form.email class="form-control border-success" type="email" placeholder="ENTER YOUR EMAIL" name="email"  %}
-                    <br>
-                    {% render_field ContactUs_form.message class="form-control border-success" type="text" placeholder="YOUR MESSAGE. . . " name="message"  %}
-                    <br>
-                    <button type="submit" class="btn btn-success">Submit</button>
+                    <div class="mb-3">
+                        <input name='full_name' type="text" class="form-control border-success" placeholder="ENTER YOUR FULL NAME">
+                      </div>
+                    <div class="mb-3">
+                        <input name='phone_num' type="tel" class="form-control border-success"  placeholder="ENTER YOUR PHONE NUMBER">
+                      </div>
+                    <div class="mb-3">
+                        <input name='email' type="email" class="form-control border-success" placeholder="ENTER YOUR EMAIL">
+                      </div>
+                      <div class="mb-3">
+                        <textarea name='message' class="form-control border-success"  rows="3" placeholder="HOW CAN WE HELP YOU?"></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-success">Submit</button>  
                 </form>
             </div>
         <br>

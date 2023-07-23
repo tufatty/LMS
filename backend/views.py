@@ -29,13 +29,20 @@ def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            full_name = request.POST(full_name=full_name)
-            phone_num = request.POST
-            messages.success(request, 'THANKS, WE WILL GET BACK TO YOU {full_name}')
-            return render(request, 'contact.html', {'title':'Contact Us','current_year':current_year,'Contact_form':form})
-    else:
-        return render(request, 'contact.html', {'title':'Contact Us','current_year':current_year})
-    
+            form.save()
+            messages.success(request, 'THANKS FOR THE INFO, WE WILL GET BACK TO YOU')
+            
+            return redirect("backend:contact")
+        else:
+            messages.error(request, "PLEASE FILL UP YOUR INFO")
+    form = ContactForm()
+    template = loader.get_template("contact.html")
+    context = {
+        'contact_form':form,
+        'current_year': current_year,
+    }
+    return HttpResponse(template.render(context, request))
+
 @login_required(login_url='login/')
 def courses(request):
     return render(request, 'courses.html', {'title':'Courses','current_year':current_year})
