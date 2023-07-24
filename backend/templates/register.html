@@ -36,9 +36,13 @@
                     <br>
                     {% render_field register_form.email class="form-control border-success" type="email" placeholder="ENTER YOUR E-MAIL" name="email"  %}
                     <br>
-                    {% render_field register_form.password1 class="form-control border-success" type="password" placeholder="ENTER YOUR PASSWORD" name="password1"  %}
+                    {% render_field register_form.password1 id="password" class="form-control border-success" type="password" placeholder="ENTER YOUR PASSWORD" name="password1"  %}
                     <br>
-                    {% render_field register_form.password2 class="form-control border-success" type="password" placeholder="CONFIRM YOUR PASSWORD" name="password2"  %}
+                    <div class='form-text'>
+                        <span id='showpass'>SHOW PASSWORD</span>
+                     </div>
+                    <br>
+                    {% render_field register_form.password2 id="password" class="form-control border-success" type="password" placeholder="CONFIRM YOUR PASSWORD" name="password2"  %}
                     <br>
                     <button type="submit" class="btn btn-success">Register</button>
                 </form>
@@ -47,6 +51,33 @@
             
         </div>
     </main>
+    <style>
+        #showpass:hover{
+            color:red;
+            cursor:pointer;
+
+        }
+        #showpass{
+           float:right;
+        }
+    </style>
+    <script>
+
+        let password = document.getElementById('password');
+        let showpass = document.getElementById('showpass');
+       
+
+        showpass.onclick = function(){
+            if(password.type == "password"){
+                password.type = "text";
+            
+            }else{
+                password.type = "password";
+                
+            }
+              }
+
+    </script>
   </body> 
 
 {% endblock %}

@@ -37,7 +37,7 @@
                             <div class="mb-3">
                                 <div class="row g-3 align-items-center">
                                     <div class="col-auto">
-                                        {% render_field login_form.username class='form-control' placeholder="ENTER YOUR USERNAME" name="username" %}
+                                        {% render_field login_form.username class='form-control border-success' placeholder="ENTER YOUR USERNAME" name="username" %}
                                     </div>
                                         <div class="col-auto">
                                           <span class="form-text">
@@ -51,9 +51,9 @@
                                 <br>
                                     <div class="row g-3 align-items-center">
                                         <div class="col-auto">
-                                            {% render_field login_form.password  id='password' class="form-control" placeholder="ENTER YOUR PASSWORD" type="password" name="password" %}
-                                            <div class='form-text' id='showpass'>
-                                               SHOW PASSWORD
+                                            {% render_field login_form.password  id='password' class="form-control border-success" placeholder="ENTER YOUR PASSWORD" type="password" name="password" %}
+                                            <div class='form-text'>
+                                               <span id='showpass'>SHOW PASSWORD</span>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -91,18 +91,23 @@
                             }    
                             #showpass:hover{
                                 cursor:pointer;
-                                color:red;
+                                color:red;  
 
                             }
+                            #showpass{
+                               float:right
+                            }
+                    
 
                         </style>
         </main>
     </center>
     <script>
+
         let password = document.getElementById('password');
         let showpass = document.getElementById('showpass');
        
-        
+
         showpass.onclick = function(){
             if(password.type == "password"){
                 password.type = "text";
