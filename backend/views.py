@@ -19,10 +19,16 @@ current_year = today_date.strftime('%Y')
 def home(request):
     return render(request, 'home.html', {'title':'Home','current_year':current_year})
 
+def messages(request):
+    return render(request, 'messages.html', {'title':'Home','current_year':current_year})
+
 def index(request):
     return render(request, 'index.html', {'title':'Home','current_year':current_year})
 
 def about(request):
+    return render(request, 'about.html', {'title':'About','current_year':current_year})
+
+def inbox(request):
     return render(request, 'about.html', {'title':'About','current_year':current_year})
 
 def contact(request):
@@ -131,7 +137,7 @@ def update(request):
 def logout_request(request):
     logout(request)
     messages.info(request, ("You have successfully logged out."))
-    return redirect('backend:home')
+    return redirect('backend:login')
 
 @login_required(login_url='login/')
 def dashboard(request):
