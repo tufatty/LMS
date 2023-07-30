@@ -7,7 +7,6 @@ from django.contrib.auth import login, authenticate, logout #login and logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
-import time
 import datetime
 
 today_date = datetime.date.today()
@@ -19,9 +18,6 @@ current_year = today_date.strftime('%Y')
 def home(request):
     return render(request, 'home.html', {'title':'Home','current_year':current_year})
 
-def messages(request):
-    return render(request, 'messages.html', {'title':'Home','current_year':current_year})
-
 def index(request):
     return render(request, 'index.html', {'title':'Home','current_year':current_year})
 
@@ -31,13 +27,15 @@ def about(request):
 def inbox(request):
     return render(request, 'about.html', {'title':'About','current_year':current_year})
 
+def settings(request):
+    return render(request, 'settings.html', {'title':'settings','current_year':current_year})
+
 def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, 'THANKS FOR THE INFO, WE WILL GET BACK TO YOU')
-            
             return redirect("backend:contact")
         else:
             messages.error(request, "PLEASE FILL UP YOUR INFO")
@@ -62,10 +60,10 @@ def register_request(request):
         if form.is_valid():
             user = form.save()
             #login(request, User)
-            messages.success(request, ("Registration successful."))
+            messages.success(request, "Registration successful.")
             return redirect("backend:login")
         else:
-            messages.error(request, ("Unsuccessful Registration. Invalid Information"))
+            messages.error(request, "Unsuccessful Registration. Invalid Information")
     form = NewUserForm()
     template = loader.get_template("register.html")
     context = {
@@ -89,10 +87,10 @@ def login_request(request):
                 #what you have here is app name : patter/link name
                 return redirect('backend:dashboard')
             else:
-                messages.error(request, ("Invalid username or "  + "password."))
+                messages.error(request, "Invalid username or "  + "password.")
                 return redirect('backend:login')
         else:
-            messages.error(request, ("Invalid username or password"))
+            messages.error(request, "Invalid username or password")
             return redirect('backend:login')
     form = AuthenticationForm()
     template = loader.get_template("login.html")
@@ -108,14 +106,18 @@ def update(request):
     #mydashboard = User.objects.filter(id=user_id)
     if request.method == 'POST':
         user_form = UserUpdateForm(request.POST, instance=request.user)
-        profile_form = ProfileForm(request.POST, instance=request.user.userprofile)
+        profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
 
         #validate the form
         if user_form.is_valid() and profile_form.is_valid():      
             user_form.save()
             profile_form.save()
-            messages.success(request, ('update successful'))
+            messages.success(request, 'update successful')
             return redirect('backend:dashboard')
+        else:
+            user_form = UserUpdateForm(request.POST, instance=request.user)
+            profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
+            messages.error(request, "please check your form")
     else:
         user_form = UserUpdateForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.userprofile)
@@ -136,7 +138,7 @@ def update(request):
 @login_required(login_url='login/')
 def logout_request(request):
     logout(request)
-    messages.info(request, ("You have successfully logged out."))
+    messages.success(request, "You have successfully logged out.")
     return redirect('backend:login')
 
 @login_required(login_url='login/')

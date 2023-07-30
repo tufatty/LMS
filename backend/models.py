@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from PIL import Image
 
 # Create your models here.
 
@@ -112,6 +113,24 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
+    
+    #override the save method of the model
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        #open the image
+        img = Image.open(self.image.path)
+
+        #resizing the image and save to override the other one
+        if img.height > 100 or img.width > 100:
+            output_size = (100, 100)
+
+            #RESIZE THE IMAGE   
+            img.thumbnail(output_size)
+
+            #SAVE IT AGAIN AND OVERRIDE THE LARGER IMAGE
+            img.save(self.image.path)
+
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
@@ -127,7 +146,7 @@ class ContactUs (models.Model):
     full_name = models.CharField("Full Name", max_length=20)
     phone_num = models.BigIntegerField()
     email = models.EmailField()
-    message = models.TextField(max_length=250)
+    text = models.TextField(max_length=250)
 
 
 

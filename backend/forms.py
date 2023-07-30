@@ -49,11 +49,11 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile    
-        fields = ('phone', 'dob', 'address', 'city','state','gender','image')
+        fields = ('phone', 'dob', 'address', 'city','state','gender','image',)
         
 class ContactForm(forms.ModelForm):
    class Meta:
          model = ContactUs
-         fields = ('full_name', 'phone_num', 'email', 'message')
+         fields = ('full_name', 'phone_num', 'email', 'text',)
 
 
