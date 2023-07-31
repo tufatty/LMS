@@ -1,0 +1,17 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static '../static/css/home.css' %}">
+<div class="carousel">
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src=" {% static '../static/images/classro.jpg' %}" class="d-block w-100" alt="a">
+          </div>
+          <div class="carousel-item">
+            <img src=" {% static '../static/images/wire.jpg' %}" class="d-block w-100" alt="b">
+          </div>
+          <div class="carousel-item">
+            <img src=" {% static '../static/images/teacher.jpg' %}" class="d-block w-100" alt="c">
+          </div>
+        </div>
+      </div>
+</div>

@@ -1,3 +1,7 @@
 .d-flex shadow ul li{
     list-style-type: none;
 }
+.dashboard-carousel{
+    position:relative;
+    z-index: 1;
+}
