@@ -16,7 +16,7 @@
 {% include 'dashboard-navbar.html' %}
 {% block content %}
 <br>
-        <div class="shadow w-25  p-4 mb-5 bg-body rounded">
+        <div class="shadow w-25  p-4 mb-5 bg-body rounded z-2 position-absolute">
             <h1 class='akpa'>SETTINGS</h1>
             <br>
             <ul>
@@ -30,6 +30,9 @@
                 <li class="border-bottom">CHANGE BACKGROUND</li><br>
                 <li class="border-bottom">UPDATE CLASS CALENDAR</li><br>
             </ul>
+        </div>
+        <div class='float-end z-1 position-absolute h-aut'>
+            {% include 'dashboard-carousel.html' %} 
         </div>
 
     <style>
