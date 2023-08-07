@@ -123,7 +123,7 @@ class UserProfile(models.Model):
 
         #resizing the image and save to override the other one
         if img.height > 100 or img.width > 100:
-            output_size = (100, 100)
+            output_size = (40, 40)
 
             #RESIZE THE IMAGE   
             img.thumbnail(output_size)

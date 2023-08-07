@@ -34,13 +34,14 @@
     {% endif %}
     <div style="background-color:grey"> 
         <h1> WELCOME TO THE DASHBOARD!!!! <span style='color:red'> {{user.username}} </span></h1> 
+        <form class="d-flex flex-row-reverse" role="search">
+            <button class="btn btn-outline-success p-2" type="submit">Search </button>
+            <input class="form-control w-25 p-2" type="search" placeholder="Type here to search. . . " aria-label="Search">
+          </form>
     </div>     
     <br>
-    <div class="float-end">
-        <img class="rounded-circle" src="{{ user.userprofile.image.url }}"/>
-        </div>
-    <br>
     <div style='background-color:white' class='float-start'>
+        <br>
       <div class="row justify-content-evenly">
    
             <div class="shadow col-4 w-25 p-4 mb-5 bg-body rounded" id='colos' >
@@ -286,6 +287,6 @@
 </body>
 <br>
 {% endblock content %}
-<footer>Msdersdfwe</footer>
+<footer style=''>Msdersdfwe</footer>
 
 
