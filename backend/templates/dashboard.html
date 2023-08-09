@@ -32,11 +32,11 @@
     {% endif %} 
     {% endfor %}
     {% endif %}
-    <div style="background-color:grey"> 
+    <div style="background-color:grey" class="d-flex align-items mb-3"> 
         <h1> WELCOME TO THE DASHBOARD!!!! <span style='color:red'> {{user.username}} </span></h1> 
-        <form class="d-flex flex-row-reverse" role="search">
+        <form class="d-flex flex-row-reverse ms-auto p-2" role="search">
             <button class="btn btn-outline-success p-2" type="submit">Search </button>
-            <input class="form-control w-25 p-2" type="search" placeholder="Type here to search. . . " aria-label="Search">
+            <input class="form-control w-75" type="search" placeholder="Type here to search. . . " aria-label="Search">
           </form>
     </div>     
     <br>
