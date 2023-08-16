@@ -11,11 +11,10 @@
     <title>{{ title }}</title>
     {% endif %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-   
     <link rel="stylesheet" type="text/css" href="{% static '/backend/static/css/dashboard.css' %}">
 </head>
 {% block content %}
-<body style='background-color:aliceblue'>
+<body style='background-color:aliceblue;'>
     {% include 'dashboard-navbar.html' %}
     {% if user.is_authenticated %}
     
@@ -34,7 +33,7 @@
     {% endif %}
     <br>
     <div style="background-color:green" class="d-flex align-items mb-3"> 
-        <h1 class='lor'> WELCOME TO THE DASHBOARD!!!! <span style='color:red'> {{user.username}} </span></h1> 
+        <h1 class='lor'> WELCOME TO THE DASHBOARD!!!! <span style='color:red;text-transform:uppercase;'> {{user.username}} </span></h1> 
         <form class="d-flex flex-row-reverse ms-auto p-2" role="search">
             <button class="btn btn-success p-2" type="submit">Search </button>
             <input class="form-control w-75" type="search" placeholder="Type here to search. . . " aria-label="Search">
@@ -51,26 +50,38 @@
         <div style='background-color:black' class='shadow col-4 w-25 p-4 bg-body rounded row '>
             <br>
             <center class='border-bottom'>
-                <h1>CATEGORIES</h1>
+                <h1 class='chase'>CATEGORIES</h1>
             </center>
             <ul>
                 <br>
-                <a class='border-bottom' href="{% url 'backend:courses' %}" style='display:block; text-decoration:none;'>GO TO CLASS</a>
+                <a class='border-bottom' href="{% url 'backend:courses' %}" style='display:block; text-decoration:none;color:black;'><span class='axe'> GO TO CLASS </span> </a>
                 <br>
-                <a class='border-bottom' href="{% url 'backend:courses' %}" style='display:block; text-decoration:none;'>NEW COURSE</a>
+                <a class='border-bottom' href="{% url 'backend:courses' %}" style='display:block; text-decoration:none;color:black;'><span class='axe'> NEW COURSE</span> </a>
                 <br>
-                <a class='border-bottom' href="{% url 'backend:courses' %}" style='display:block; text-decoration:none;'>ATTENDANCE</a>
+                <a class='border-bottom' href="{% url 'backend:courses' %}" style='display:block; text-decoration:none;color:black;'><span class='axe'> ATTENDANCE </span> </a>
                 <br>
-                <a class='border-bottom' href="{% url 'backend:courses' %}" style='display:block; text-decoration:none;'>FREE COURSES</a>
+                <a class='border-bottom' href="{% url 'backend:courses' %}" style='display:block; text-decoration:none;color:black;'><span class='axe'> FREE COURSES </span> </a>
                 <br>
-                <a class='border-bottom' href="{% url 'backend:courses' %}" style='display:block; text-decoration:none;'>PAID COURSES</a>
+                <a class='border-bottom' href="{% url 'backend:courses' %}" style='display:block; text-decoration:none;color:black;'><span class='axe'> PAID COURSES </span> </a>
                 <br>
-                <a class='border-bottom' href="{% url 'backend:courses' %}" style='display:block; text-decoration:none;'>CALENDAR</a>
+                <a class='border-bottom' href="{% url 'backend:courses' %}" style='display:block; text-decoration:none;color:black;'><span class='axe'> CALENDAR </span> </a>
                 <br>
-                <a href="{% url 'backend:courses' %}" style='display:block; text-decoration:none;'>EVENTS</a>
+                <a href="{% url 'backend:courses' %}" style='display:block; text-decoration:none;color:black;'> <span class='axe'> EVENTS </span> </a>
                 <br>
                
             </ul>
+            <style>
+                .axe:hover{
+                    background-color:aliceblue;
+                    color:red;
+                    border-left:red ridge;
+                    font-weight:bold;
+                    text-indent:20px;
+                }
+                .chase{
+                    text-shadow:1px 1px 5px green;
+                }
+            </style>
             <div class='float-end'>
                 {% include 'dashboard-carousel.html' %}
             </div>
@@ -84,7 +95,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 <br>
-<footer style='background-color:black;'>abacha </footer>
+<footer style='background-color:black;color:white;'>SKILLUPLMS.COM (c) {{ current_year }} </footer>
 {% endblock content %}
 
 

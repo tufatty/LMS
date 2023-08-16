@@ -8,6 +8,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 import datetime
+from django.core.mail import send_mail
+
 
 today_date = datetime.date.today()
 current_year = today_date.strftime('%Y')
