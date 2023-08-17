@@ -34,10 +34,23 @@ def settings(request):
 
 def contact(request):
     if request.method == 'POST':
+      
         form = ContactForm(request.POST)
+
         if form.is_valid():
+            full_name = form.cleaned_data.get('full_name')
+            phone_num = form.cleaned_data.get('phone_num')
+            email =form.cleaned_data.get('email')
+            text = form.cleaned_data.get('text')   
             form.save()
             messages.success(request, 'THANKS FOR THE INFO, WE WILL GET BACK TO YOU')
+            send_mail(
+                subject= full_name,
+                message= text,
+                from_email= email,
+                recipient_list=['ugonjokubarthlomew@gmail.com','mccathly@gmail.com'],
+                fail_silently=False,
+            )
             return redirect("backend:contact")
         else:
             messages.error(request, "PLEASE FILL UP YOUR INFO")
