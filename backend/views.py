@@ -73,9 +73,12 @@ def register_request(request):
     if request.method == "POST":
         form = NewUserForm(request.POST)
         if form.is_valid():
+            username = form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
             user = form.save()
             #login(request, User)
             messages.success(request, "Registration successful.")
+            
             return redirect("backend:login")
         else:
             messages.error(request, "Unsuccessful Registration. Invalid Information")
