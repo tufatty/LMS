@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout #login and logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import AuthenticationForm , PasswordResetForm, PasswordChangeForm
+from django.contrib.auth.forms import AuthenticationForm , PasswordResetForm, SetPasswordForm
 import datetime
 from django.core.mail import send_mail
 
@@ -167,33 +167,4 @@ def dashboard(request):
 #FOR PASSWORD RESETTING OR FORGOT PASSWORD
 
 
-def PasswordResetView(request):
-    if request.method == 'POST':
-        form = PasswordResetForm(request.POST)
-        if form.is_valid():
-            email = form.cleaned_data.get('email')            
-            return redirect('backend:password_reset_done')
-    form = PasswordResetForm()
-    template = loader.get_template('password/passwordreset.html')
-    context = {
-        "passwordreset_form": form,
-        'current_year':current_year,
-        'title':'reset password',
-    }
-    return HttpResponse(template.render(context, request))
-        
 
-
-def PasswordResetDoneView(request):
-    if request.method == 'POST':
-        return render(request, 'password/resetdone.html',{'title':'reset password'} )
-
-
-def PasswordResetConfirmView(request):
-    if request.method == 'POST':
-        return render(request, 'password/resetdone.html',{'title':'reset password'} )
-
-
-def PasswordResetCompleteView(request):
-    if request.method == 'POST':
-        return render(request, 'password/resetdone.html',{'title':'reset password'} )
