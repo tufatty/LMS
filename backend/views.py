@@ -1,3 +1,4 @@
+from typing import Any
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
@@ -9,6 +10,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm , PasswordResetForm, SetPasswordForm
 import datetime
 from django.core.mail import send_mail
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
+from django.urls import reverse_lazy
 
 
 today_date = datetime.date.today()
@@ -164,7 +168,61 @@ def dashboard(request):
     return render(request, 'dashboard.html', {'title':'Dashboard','current_year':current_year})
 
 
+
+
 #FOR PASSWORD RESETTING OR FORGOT PASSWORD
 
 
+class CustomPasswordResetView(PasswordResetView):
+    success_url = '/password_reset_done'
+    email_template_name = 'password/custom_password_reset_email.html'
+    template_name = 'password/custom_password_reset_form.html'
+    subject_template_name = 'password/custom_password_reset_subject.txt'
+    from_email = 'ugonjokubarthlomew@gmail.com'
+    form_class = PasswordResetForm
+    token_generator = PasswordResetTokenGenerator
+    extra_context = {
+        'title':'title',
+        'form':form_class,
+    }
+    extra_email_context ={
+   
+    }
+    
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        return response
 
+    def form_invalid(self, form):
+        response = super().form_valid(form)
+        return response
+        
+        
+class CustomPasswordResetDoneView(PasswordResetDoneView):
+    template_name = 'password/custom_password_reset_done.html'
+
+class CustomPasswordResetConfirmView(PasswordResetConfirmView):
+    template_name = 'password/custom_password_reset_confirm.html'
+    success_url = reverse_lazy('/password_reset_complete')
+    token_generator = PasswordResetTokenGenerator
+    post_reset_login = False
+    post_reset_login_backend = ''
+    form_class = SetPasswordForm
+    extra_context = {
+        'form':form_class,
+        'title':'password reset'
+
+    }
+    reset_url_token = 'set-password'
+    
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+    
+
+    def form_invalid(self, form):
+
+        return super().form_invalid(form)
+
+class CustomPasswordResetCompleteView(PasswordResetCompleteView):
+    template_name = 'password/custom_password_reset_complete.html'
