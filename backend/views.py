@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm , PasswordResetForm, SetPasswordForm
 import datetime
 from django.core.mail import send_mail
-from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 from django.urls import reverse_lazy
 
@@ -180,7 +180,7 @@ class CustomPasswordResetView(PasswordResetView):
     subject_template_name = 'password/custom_password_reset_subject.txt'
     from_email = 'ugonjokubarthlomew@gmail.com'
     form_class = PasswordResetForm
-    token_generator = PasswordResetTokenGenerator
+    token_generator = default_token_generator
     extra_context = {
         'title':'title',
         'form':form_class,
@@ -190,21 +190,31 @@ class CustomPasswordResetView(PasswordResetView):
     }
     
     def form_valid(self, form):
-        response = super().form_valid(form)
-        return response
+        opts = {
+            "use_https": self.request.is_secure(),
+            "token_generator": self.token_generator,
+            "from_email": self.from_email,
+            "email_template_name": self.email_template_name,
+            "subject_template_name": self.subject_template_name,
+            "request": self.request,
+            "html_email_template_name": self.html_email_template_name,
+            "extra_email_context": self.extra_email_context,
+        }
+        form.save(**opts)
+        return super().form_valid(form)
 
     def form_invalid(self, form):
         response = super().form_valid(form)
         return response
         
-        
+
 class CustomPasswordResetDoneView(PasswordResetDoneView):
     template_name = 'password/custom_password_reset_done.html'
 
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):
     template_name = 'password/custom_password_reset_confirm.html'
     success_url = reverse_lazy('/password_reset_complete')
-    token_generator = PasswordResetTokenGenerator
+    token_generator = default_token_generator
     post_reset_login = False
     post_reset_login_backend = ''
     form_class = SetPasswordForm
