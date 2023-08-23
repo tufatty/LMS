@@ -186,7 +186,12 @@ class CustomPasswordResetView(PasswordResetView):
         'form':form_class,
     }
     extra_email_context ={
-   
+        'domain': 'www.apache.com',
+        'protocol':'http',
+        'email': User.email,
+        'user':User.username,
+        'uid':User.pk,
+        'token': token_generator,
     }
     
     def form_valid(self, form):
@@ -216,7 +221,7 @@ class CustomPasswordResetConfirmView(PasswordResetConfirmView):
     success_url = reverse_lazy('/password_reset_complete')
     token_generator = default_token_generator
     post_reset_login = False
-    post_reset_login_backend = ''
+    post_reset_login_backend = None
     form_class = SetPasswordForm
     extra_context = {
         'form':form_class,
