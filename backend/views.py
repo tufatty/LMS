@@ -18,6 +18,7 @@ from django.urls import reverse_lazy
 today_date = datetime.date.today()
 current_year = today_date.strftime('%Y')
 
+current_month = today_date.strftime('%B')
 
 # Create your views here.
 
@@ -165,7 +166,7 @@ def logout_request(request):
 
 @login_required(login_url='login/')
 def dashboard(request):
-    return render(request, 'dashboard.html', {'title':'Dashboard','current_year':current_year})
+    return render(request, 'dashboard.html', {'title':'Dashboard','current_year':current_year ,'current_month':current_month, 'today':today_date,})
 
 
 
